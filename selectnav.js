@@ -109,10 +109,11 @@ window.selectnav = (function(){
 
         var link = list.children[i].children[0];
         if(typeof(link) !== 'undefined'){
+          
           if(link.children.length > 0)
           {
             for(var ii=0; ii < link.children.length; ii++){
-              if(link.children[ii].tagName == innerLinkFilter)
+              if(link.children[ii].tagName.toLowerCase() == innerLinkFilter.toLowerCase())
               {
                 var text = link.children[ii].innerText || link.children[ii].textContent;
               }
