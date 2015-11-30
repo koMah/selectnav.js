@@ -37,6 +37,7 @@ window.selectnav = (function(){
       autoselect = typeof(o.autoselect) === "boolean" ? o.autoselect : true,
       nested = typeof(o.nested) === "boolean" ? o.nested : true,
       indent = o.indent || "→",
+      innerLinkFilter = o.innerLinkFilter || "";
       label = o.label || "- Navigation -",
 
       // helper variables
@@ -108,7 +109,17 @@ window.selectnav = (function(){
 
         var link = list.children[i].children[0];
         if(typeof(link) !== 'undefined'){
-          var text = link.innerText || link.textContent;
+          if(link.children.length > 0)
+          {
+            for(var ii=0; ii < link.children.length; ii++){
+              if(link.children[ii].tagName == innerLinkFilter)
+              {
+                var text = link.children[ii].innerText || link.children[ii].textContent;
+              }
+            }
+          } else {
+            var text = link.innerText || link.textContent;
+          }
           var isselected = '';
 
           if(activeclass){
