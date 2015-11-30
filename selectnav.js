@@ -37,7 +37,7 @@ window.selectnav = (function(){
       autoselect = typeof(o.autoselect) === "boolean" ? o.autoselect : true,
       nested = typeof(o.nested) === "boolean" ? o.nested : true,
       indent = o.indent || "→",
-      innerLinkFilter = o.innerLinkFilter || "",
+      innerLinkFilter = o.innerLinkFilter || false,
       label = o.label || "- Navigation -",
 
       // helper variables
@@ -110,7 +110,7 @@ window.selectnav = (function(){
         var link = list.children[i].children[0];
         if(typeof(link) !== 'undefined'){
           
-          if(link.children.length > 0)
+          if(link.children.length > 0 && innerLinkFilter)
           {
             for(var ii=0; ii < link.children.length; ii++){
               if(link.children[ii].tagName.toLowerCase() == innerLinkFilter.toLowerCase())
